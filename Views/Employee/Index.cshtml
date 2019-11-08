@@ -1,0 +1,59 @@
+﻿@using MvcEmp.Models;
+@model List<Employee>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    
+</head>
+<body>
+    <h2 class="h2 font-italic bg-light text-center  text-danger">Employees Table</h2>
+    <table class="table table-bordered table-hover">
+        <thead class="table-success">
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>AGE</th>
+                <th>DEPARTMENT</th>
+                <th>CITY</th>
+                <th>ADDRESS</th>
+                <th>Operations</th>
+
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.Name</td>
+            <td>@item.Age</td>
+            <td>@item.Department</td>
+            <td>@item.City</td>
+            <td>@item.Address</td>
+            <td>
+                @*<a href="~/Views/Employee/Create.cshtml" class="btn btn-success">Create</a>*@
+                @Html.ActionLink("Create", "Create", "Employee", null, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Update", "update", "Employee", new { id = item.ID }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Delete", "Delete", "Employee", new { id = item.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Are You Sure You Want Delete ')" })
+
+            </td>
+           
+        </tr>
+        }
+        <tfoot >
+            <tr>
+                <td colspan="7" class="text-center font-weight-bold h5 bg-primary shadow " >
+                    Finish Table 
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>
